@@ -39,14 +39,35 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
 </main>
 <footer><div class="wrap"><b>ZENOTHS</b><br>Since 2022 · An independent batch website<br><span>Not the official website of KGF College of Dental Sciences.</span></div></footer>
 <script src="data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 <script>
 const data = window.ZENOTHS_DATA || {};
-function renderCards(id, items, emptyText, label){const el=document.getElementById(id);if(!items||!items.length){el.innerHTML=`<div class="empty">${emptyText}</div>`;return;}el.innerHTML=items.map(x=>`<article class="event reveal"><div class="tag">${label}${x.date?' · '+x.date:''}</div><h3>${x.title}</h3><p>${x.description||''}</p>${x.link?`<a class="btn secondary" href="${x.link}" target="_blank" rel="noopener">MORE INFO ↗</a>`:''}</article>`).join('');}
-renderCards('ongoingCards',data.ongoing,'No ongoing programmes added yet. Check back soon.','ONGOING');
-renderCards('upcomingCards',data.upcoming,'New programmes will be announced here. Stay tuned.','UPCOMING');
-const gallery=document.getElementById('galleryGrid');
-if(data.gallery&&data.gallery.length){gallery.innerHTML=data.gallery.map((p,i)=>`<div class="photo"><img src="${p.src}" alt="${p.alt||'ZENOTHS event memory'}" loading="lazy"></div>`).join('');}
-else gallery.innerHTML='<div class="empty">Our gallery is getting ready. Photos will appear here soon.</div>';
+function renderCards(id, items, emptyText, label){const el=document.getElementById(id);if(!items||!items.length){el.innerHTML=`<div class="empty">${emptyText}</div>`;return;}el.innerHTML=items.map(x=>`<article class="event reveal"><div class="tag">${label}${x.date?' · '+x.date:''}</div><h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.description||'')}</p>${x.link?`<a class="btn secondary" href="${x.link}" target="_blank" rel="noopener">MORE INFO ↗</a>`:''}</article>`).join('');}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+async function loadLiveContent(){
+ let ongoing=data.ongoing||[], upcoming=data.upcoming||[], photos=data.gallery||[];
+ try{
+  if(window.supabase&&window.ZENOTHS_SUPABASE_URL&&window.ZENOTHS_SUPABASE_KEY){
+   const client=window.supabase.createClient(window.ZENOTHS_SUPABASE_URL,window.ZENOTHS_SUPABASE_KEY);
+   const [pr,gr,ar]=await Promise.all([client.from('programmes').select('*').order('created_at',{ascending:false}),client.from('gallery').select('*').order('created_at',{ascending:false}),client.from('announcements').select('*').order('created_at',{ascending:false})]);
+   if(!pr.error){ongoing=(pr.data||[]).filter(x=>x.status==='ongoing');upcoming=(pr.data||[]).filter(x=>x.status==='upcoming');}
+   if(!gr.error){photos=(gr.data||[]).map(x=>({src:client.storage.from('zenoths-gallery').getPublicUrl(x.image_path).data.publicUrl,alt:x.caption||'ZENOTHS event memory'}));}
+   const announcements=ar.error?[]:(ar.data||[]);
+   if(announcements.length){
+    let section=document.getElementById('announcementsLive');
+    if(!section){section=document.createElement('section');section.className='section wrap';section.id='announcementsLive';section.innerHTML='<div class="section-head"><div><div class="kicker">Latest updates</div><h2>Announcements</h2></div></div><div class="cards" id="announcementCards"></div>';document.querySelector('main').insertBefore(section,document.getElementById('ongoing'));}
+    section.querySelector('#announcementCards').innerHTML=announcements.map(x=>`<article class="event"><div class="tag">ANNOUNCEMENT</div><h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.content)}</p></article>`).join('');
+   }
+  }
+ }catch(err){console.warn('Using local ZENOTHS content fallback',err)}
+ renderCards('ongoingCards',ongoing,'No ongoing programmes added yet. Check back soon.','ONGOING');
+ renderCards('upcomingCards',upcoming,'New programmes will be announced here. Stay tuned.','UPCOMING');
+ const gallery=document.getElementById('galleryGrid');
+ if(photos.length){gallery.innerHTML=photos.map(p=>`<div class="photo"><img src="${p.src}" alt="${escapeHtml(p.alt||'ZENOTHS event memory')}" loading="lazy"></div>`).join('');}
+ else gallery.innerHTML='<div class="empty">Our gallery is getting ready. Photos will appear here soon.</div>';
+}
+loadLiveContent();
 if(data.instagram?.zenoths){document.getElementById('zenothsLink').href=data.instagram.zenoths;}
 if(data.instagram?.college){document.getElementById('collegeLink').href=data.instagram.college;}
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
