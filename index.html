@@ -26,7 +26,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
 .event.reveal{opacity:1;transform:none}
 @media(max-width:720px){.nav{height:62px}nav{display:none;position:absolute;top:62px;left:0;right:0;padding:18px 5%;background:#0b0d12;border-bottom:1px solid var(--line);flex-direction:column;gap:17px}nav.open{display:flex}.menu{display:block}.hero{grid-template-columns:1fr;min-height:auto;padding:55px 0 30px;text-align:center}.hero p{margin:15px auto}.actions{justify-content:center}.hero-art{max-width:420px;margin:0 auto}.hero-art img{max-height:390px}.section{padding:55px 0}.cards{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.socials{grid-template-columns:1fr}.about{grid-template-columns:1fr}.about-mark{min-height:90px}.section-head{display:block}.section-head .sub{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}  
-<style>
+</style>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#home">ZENOTHS<small>SINCE 2022</small></a><button class="menu" id="menuBtn" aria-label="Open menu">MENU</button><nav id="nav"><a href="#ongoing">ONGOING</a><a href="#upcoming">UPCOMING</a><a href="#gallery">GALLERY</a><a href="#connect">INSTAGRAM</a><a href="#about">ABOUT</a></nav></div></header>
 <main>
@@ -88,40 +88,5 @@ document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>do
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
-<style>
-  .batman-signature {
-    padding: 48px 20px 30px;
-    text-align: center;
-    background: #080808;
-    border-top: 1px solid rgba(212, 175, 55, 0.12);
-  }
-
-  .batman-signature svg {
-    width: 76px;
-    height: 42px;
-    display: block;
-    margin: 0 auto 17px;
-    filter: drop-shadow(0 0 9px rgba(212,175,55,.22));
-  }
-
-  .batman-credit {
-    color: #c9a64b;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-
-  .batman-credit span {
-    color: #f0d58a;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-
-  @media (max-width: 480px) {
-    .batman-signature {
-      padding: 38px 16px 25px;
-    }
-  }
-
-</body></html>
+</body>
+</html>
