@@ -28,6 +28,66 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
+  
+<style>
+  .batman-signature {
+    padding: 48px 20px 30px;
+    text-align: center;
+    background: #080808;
+    border-top: 1px solid rgba(212, 175, 55, 0.12);
+  }
+
+  .batman-signature svg {
+    width: 76px;
+    height: 42px;
+    display: block;
+    margin: 0 auto 17px;
+    filter: drop-shadow(0 0 9px rgba(212,175,55,.22));
+  }
+
+  .batman-credit {
+    color: #c9a64b;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .batman-credit span {
+    color: #f0d58a;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 480px) {
+    .batman-signature {
+      padding: 38px 16px 25px;
+    }
+  }
+</style>
+
+<footer class="batman-signature">
+  <svg viewBox="0 0 120 64" xmlns="http://www.w3.org/2000/svg"
+       role="img" aria-label="Custom bat emblem">
+    <path
+      d="M60 8
+         C51 15 44 20 35 18
+         C26 15 17 10 7 12
+         C14 22 15 33 11 42
+         C24 36 33 39 41 50
+         C47 45 53 40 60 40
+         C67 40 73 45 79 50
+         C87 39 96 36 109 42
+         C105 33 106 22 113 12
+         C103 10 94 15 85 18
+         C76 20 69 15 60 8Z"
+      fill="#c9a64b"/>
+  </svg>
+
+  <div class="batman-credit">
+    CREATED BY <span>bAAtman</span>
+  </div>
+</footer>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#home">ZENOTHS<small>SINCE 2022</small></a><button class="menu" id="menuBtn" aria-label="Open menu">MENU</button><nav id="nav"><a href="#ongoing">ONGOING</a><a href="#upcoming">UPCOMING</a><a href="#gallery">GALLERY</a><a href="#connect">INSTAGRAM</a><a href="#about">ABOUT</a></nav></div></header>
 <main>
