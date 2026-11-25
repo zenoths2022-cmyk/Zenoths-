@@ -73,8 +73,8 @@ async function loadLiveContent(){
  else gallery.innerHTML='<div class="empty">Our gallery is getting ready. Photos will appear here soon.</div>';
 }
 loadLiveContent();
-if(data.instagram?.zenoths){document.getElementById('zenothsLink').href=data.instagram.zenoths;}
-if(data.instagram?.college){document.getElementById('collegeLink').href=data.instagram.college;}
+document.getElementById('zenothsLink').href='https://www.instagram.com/_.zenoths._/';
+document.getElementById('collegeLink').href='https://www.instagram.com/kgf_dental_college_official/';
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.08});
