@@ -22,10 +22,34 @@ nav{display:flex;gap:23px;font-size:12px;color:#d5d0c8}nav a:hover{color:var(--g
 .socials{display:grid;grid-template-columns:1fr 1fr;gap:14px}.social{border:1px solid var(--line);border-radius:8px;padding:22px;background:#11131a;display:flex;align-items:center;justify-content:space-between;gap:15px}.social strong{font:600 16px Cinzel;color:var(--gold2)}.social span{font-size:11px;color:var(--muted);display:block;margin-top:5px}.arrow{color:var(--gold);font-size:22px}
 .about{background:linear-gradient(110deg,#141720,#0c0d12);border:1px solid var(--line);padding:30px;border-radius:8px;display:grid;grid-template-columns:1.2fr .8fr;gap:25px}.about p{color:#b9b6b1;line-height:1.9;font-size:13px}.about-mark{display:grid;place-items:center;font:700 35px Cinzel;letter-spacing:5px;color:#d9aa6377;text-align:center}
 footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:11px;text-align:center;line-height:2}footer b{color:var(--gold2);font-family:Cinzel;letter-spacing:2px}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.show{opacity:1;transform:none}
+ .reveal {   opacity: 0;   transform: translateY(28px) scale(0.985);   transition:     opacity 0.9s ease,     transform 0.9s cubic-bezier(.22,1,.36,1); }  .reveal.show {   opacity: 1;   transform: translateY(0) scale(1); }
 .event.reveal{opacity:1;transform:none}
 @media(max-width:720px){.nav{height:62px}nav{display:none;position:absolute;top:62px;left:0;right:0;padding:18px 5%;background:#0b0d12;border-bottom:1px solid var(--line);flex-direction:column;gap:17px}nav.open{display:flex}.menu{display:block}.hero{grid-template-columns:1fr;min-height:auto;padding:55px 0 30px;text-align:center}.hero p{margin:15px auto}.actions{justify-content:center}.hero-art{max-width:420px;margin:0 auto}.hero-art img{max-height:390px}.section{padding:55px 0}.cards{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.socials{grid-template-columns:1fr}.about{grid-template-columns:1fr}.about-mark{min-height:90px}.section-head{display:block}.section-head .sub{margin-top:10px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}  
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}} 
+  
+/* ZENOTHS — Premium motion upgrade */
+
+.zenoths-motion {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(.22,1,.36,1);
+}
+
+.zenoths-motion.zenoths-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zenoths-motion {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 </style>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#home">ZENOTHS<small>SINCE 2022</small></a><button class="menu" id="menuBtn" aria-label="Open menu">MENU</button><nav id="nav"><a href="#ongoing">ONGOING</a><a href="#upcoming">UPCOMING</a><a href="#gallery">GALLERY</a><a href="#connect">INSTAGRAM</a><a href="#about">ABOUT</a></nav></div></header>
