@@ -52,7 +52,31 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
 
  
 
+/* ZENOTHS — Dragon glow */
 
+.hero-art img {
+  animation: dragonGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes dragonGlow {
+  from {
+    filter:
+      drop-shadow(0 18px 40px #000)
+      drop-shadow(0 0 8px rgba(217, 170, 99, 0.12));
+  }
+
+  to {
+    filter:
+      drop-shadow(0 18px 40px #000)
+      drop-shadow(0 0 22px rgba(255, 100, 35, 0.30));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art img {
+    animation: none;
+  }
+}
 </style>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#home">ZENOTHS<small>SINCE 2022</small></a><button class="menu" id="menuBtn" aria-label="Open menu">MENU</button><nav id="nav"><a href="#ongoing">ONGOING</a><a href="#upcoming">UPCOMING</a><a href="#gallery">GALLERY</a><a href="#connect">INSTAGRAM</a><a href="#about">ABOUT</a></nav></div></header>
