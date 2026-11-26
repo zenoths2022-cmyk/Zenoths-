@@ -49,50 +49,10 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
     transition: none;
   }
 }
-/* ZENOTHS — Dragon aura */
 
-.hero {
-  position: relative;
-  isolation: isolate;
-}
+ 
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -8% -5%;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at 28% 48%,
-      rgba(217, 170, 99, 0.20),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at 78% 42%,
-      rgba(255, 75, 25, 0.13),
-      transparent 48%
-    );
-  filter: blur(30px);
-  animation: dragonAura 6s ease-in-out infinite alternate;
-}
 
-@keyframes dragonAura {
-  from {
-    opacity: 0.55;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero::before {
-    animation: none;
-  }
-}
 </style>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#home">ZENOTHS<small>SINCE 2022</small></a><button class="menu" id="menuBtn" aria-label="Open menu">MENU</button><nav id="nav"><a href="#ongoing">ONGOING</a><a href="#upcoming">UPCOMING</a><a href="#gallery">GALLERY</a><a href="#connect">INSTAGRAM</a><a href="#about">ABOUT</a></nav></div></header>
