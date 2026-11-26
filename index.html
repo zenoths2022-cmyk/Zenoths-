@@ -77,30 +77,42 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:#8d8982;font-size:1
     animation: none;
   }
 }
- /* ZENOTHS — Golden title shimmer */
+
+ 
+/* ZENOTHS — Intense golden title shimmer */
 
 .hero h1 {
   background: linear-gradient(
     110deg,
-    #d9aa63 0%,
-    #fff0c2 35%,
-    #d9aa63 50%,
-    #f3d39a 65%,
-    #d9aa63 100%
+    #b9782e 0%,
+    #f5c76e 18%,
+    #fff8d9 35%,
+    #ffffff 43%,
+    #ffdc83 52%,
+    #d9aa63 68%,
+    #fff0bd 82%,
+    #b9782e 100%
   );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
+
+  background-size: 250% 100%;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: zenothsTitleShimmer 7s ease-in-out infinite;
+
+  filter:
+    drop-shadow(0 0 5px rgba(255, 190, 90, 0.45))
+    drop-shadow(0 0 16px rgba(255, 115, 35, 0.25));
+
+  animation: zenothsTitleShimmer 4s ease-in-out infinite alternate;
 }
 
 @keyframes zenothsTitleShimmer {
   from {
     background-position: 100% 50%;
   }
+
   to {
-    background-position: -100% 50%;
+    background-position: 0% 50%;
   }
 }
 
